@@ -1,5 +1,10 @@
 import streamlit as st
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+API_ENDPOINT = os.getenv("API_ENDPOINT")
 
 st.title("Spotcheck AI - Camera Input")
 
@@ -10,12 +15,11 @@ if picture:
     st.write("Image has been captured. Now you can send it to scan for malignant spots.")
     if st.button("Scan for malignant spots"):
         st.write("Scanning for malignant spots... Please wait.")
-        url = 'https://model-inference-api-521423942017.europe-west1.run.app/predict'
         files = {'file': picture.getvalue()}
         headers = {
             'accept': 'application/json'
         }
-        r = requests.post(url, files=files, headers=headers, timeout=60)
+        r = requests.post(API_ENDPOINT, files=files, headers=headers, timeout=60)
         if r.status_code == 200:
             st.write("Scan completed. Here are the results:")
             st.write(r.text)
