@@ -3,4 +3,3 @@ requests
 python-dotenv
 streamlit_cropper
 pillow
-io
