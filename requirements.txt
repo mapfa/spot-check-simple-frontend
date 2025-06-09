@@ -2,5 +2,5 @@ streamlit
 requests
 python-dotenv
 streamlit_cropper
-PIL
+pillow
 io
