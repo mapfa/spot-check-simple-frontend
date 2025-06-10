@@ -44,6 +44,9 @@ elif st.session_state.upload_step == 'crop':
             if st.button("Scan for malignant spots"):
                 # Convert PIL Image to bytes
                 img_byte_arr = BytesIO()
+                # Convert image to RGB mode if it's in RGBA mode
+                if cropped_img.mode == 'RGBA':
+                    cropped_img = cropped_img.convert('RGB')
                 cropped_img.save(img_byte_arr, format='JPEG')
                 img_byte_arr = img_byte_arr.getvalue()
                 
